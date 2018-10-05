@@ -12,7 +12,7 @@ public class Renderer {
 
     public void fillRect(int x, int y, int width, int height, IBColor color) {
         for(int x0 = x; x0 < x + width; x0++) {
-            for(int y0 = 0; y0 < y + height; y0++) {
+            for(int y0 = y; y0 < y + height; y0++) {
 
                 drawPixel(x0, y0, color);
             }
