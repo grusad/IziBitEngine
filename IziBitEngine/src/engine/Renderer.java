@@ -20,12 +20,12 @@ public class Renderer {
     }
 
     public void drawRect(int x, int y, int width, int height, IBColor color) {
-        for(int x0 = x; x0 < width; x0++) {
+        for(int x0 = x; x0 < width + x; x0++) {
             drawPixel(x0, y, color);
             drawPixel(x0, y + height - 1, color);
         }
 
-        for(int y0 = y; y0 < height; y0++) {
+        for(int y0 = y; y0 < height + y; y0++) {
             drawPixel(x, y0, color);
             drawPixel(x + width - 1, y0, color);
         }
@@ -61,6 +61,25 @@ public class Renderer {
                 err += dx - (radius << 1);
             }
 
+        }
+    }
+
+    public void drawTri(int x0, int y0, int x1, int y1, int x2, int y2, IBColor color) {
+
+        drawLine(x0, y0, x1, y1, color);
+        drawLine(x1, y1, x2, y2, color);
+        drawLine(x2, y2, x0, y0, color);
+
+    }
+
+    public void drawLine(int x0, int y0, int x1, int y1, IBColor color) {
+
+        int dx = x1 - x0;
+        int dy = y1 - y0;
+
+        for(int x = x0; x < x1; x++) {
+            int y = y0 + dy * (x - x0) / dx;
+            drawPixel(x, y, color);
         }
     }
 

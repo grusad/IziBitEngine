@@ -12,6 +12,30 @@ public class Vector2 {
         this.y = y;
     }
 
+    public Vector2 add(Vector2 other) {
+        Vector2 vector = new Vector2();
+        vector.x = this.x + other.x;
+        vector.y = this.y + other.y;
+        return vector;
+    }
 
+    public Vector2 sub(Vector2 other){
+        Vector2 vector = new Vector2();
+        vector.x = this.x - other.x;
+        vector.y = this.y - other.y;
+        return vector;
+    }
+
+    public Vector2 multiply(Vector2 other){
+        Vector2 vector = new Vector2();
+        vector.x = this.x * other.x;
+        vector.y = this.y * other.y;
+        return vector;
+    }
+
+    // TODO: Should this exist?
+    public Vector2 divide(Vector2 other){
+        return null;
+    }
 
 }
