@@ -4,6 +4,7 @@ public class Renderer {
 
     private Display display;
     private int[] pixels;
+    private Font currentFont = Font.DEFAULT;
 
     public Renderer(Display display) {
         this.display = display;
@@ -83,10 +84,6 @@ public class Renderer {
         }
     }
 
-    public void fillCircle(int x, int y, int radius, IBColor color) {
-        //TODO: Build this.
-    }
-
     public void drawImage(int x, int y, IBImage image) {
         for(int x0 = x; x0 < x + image.getWidth(); x0++) {
             for(int y0 = y; y0 < y + image.getHeight(); y0++) {
@@ -105,6 +102,26 @@ public class Renderer {
         if(!isOutOfBounds(x, y)) {
             pixels[x + y * display.getWidth()] = pixel;
         }
+    }
+
+    public void drawString(int x, int y, String text, Font font){
+        text = text.toUpperCase();
+        int spacing = font.getSpacing();
+        for(int i = 0; i < text.length(); i++){
+
+            IBImage charData = font.getData(text.charAt(i));
+            if (charData != null){
+                drawImage(x + (spacing * i), y, charData);
+            }
+        }
+    }
+
+    public void drawString(int x, int y, String text){
+        drawString(x, y, text, currentFont);
+    }
+
+    public void setFont(Font font){
+        this.currentFont = font;
     }
 
     private boolean isOutOfBounds(int x, int y) {

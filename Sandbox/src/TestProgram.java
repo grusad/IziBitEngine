@@ -1,8 +1,7 @@
-import engine.IBColor;
-import engine.IziBitApplication;
-import engine.IziBitConfiguration;
-import engine.Renderer;
-import engine.Vector2;
+import engine.*;
+import engine.Font;
+
+import java.awt.*;
 
 
 public class TestProgram extends IziBitApplication {
@@ -11,23 +10,21 @@ public class TestProgram extends IziBitApplication {
 
 
     public TestProgram(){
-        super(new IziBitConfiguration(640, 420, 2, "Test application"));
+        super(new IziBitConfiguration(1280, 720, 1, "Test application"));
     }
     @Override
-    public void initalize() {
+    public void initialize() {
 
     }
 
     @Override
     public void update() {
-        x++;
     }
 
     @Override
     public void render(Renderer renderer) {
-
-        renderer.drawLine(10, x, 20, 20, IBColor.BLUE);
-
+        renderer.drawString(0, 0, "FRAMES-" + getFrames());
+        renderer.drawString(0, 10, "UPDATES-" + getUpdates());
     }
 
     public static void main(String[] args){

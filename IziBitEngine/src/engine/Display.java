@@ -21,10 +21,10 @@ public class Display {
     private IBColor clearColor;
 
     public Display(IziBitConfiguration config) {
-        clearColor = IBColor.BLACK;
+        this.clearColor = IBColor.BLACK;
         this.config = config;
-        frame = new JFrame(config.getTitle());
-        canvas = new Canvas();
+        this.frame = new JFrame(config.getTitle());
+        this.canvas = new Canvas();
         Dimension dimension = new Dimension(config.getWidth(), config.getHeight());
         frame.setPreferredSize(dimension);
         frame.setMinimumSize(dimension);
@@ -78,6 +78,11 @@ public class Display {
 
     public int[] getPixels() {
         return pixels;
+    }
+
+    public void destroy(){
+        frame.setVisible(false);
+        frame.dispose();
     }
 
 }

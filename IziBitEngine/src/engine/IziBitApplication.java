@@ -6,6 +6,8 @@ public abstract class IziBitApplication implements Runnable{
     private boolean isRunning;
     private Display display;
     private Renderer renderer;
+    private int frames;
+    private int updates;
 
     public IziBitApplication(IziBitConfiguration config) {
 
@@ -13,7 +15,7 @@ public abstract class IziBitApplication implements Runnable{
         renderer = new Renderer(display);
         applicationThread = new Thread(this, config.getTitle() + " thread");
         isRunning = true;
-        initalize();
+        initialize();
         applicationThread.start();
 
     }
@@ -56,7 +58,8 @@ public abstract class IziBitApplication implements Runnable{
 
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                System.out.println("ups:" + updates + ", fps: " + frames);
+                this.frames = frames;
+                this.updates = updates;
                 updates = 0;
                 frames = 0;
             }
@@ -69,8 +72,17 @@ public abstract class IziBitApplication implements Runnable{
         display.setClearColor(color);
     }
 
-    public abstract void initalize();
+    public int getFrames() {
+        return frames;
+    }
+
+    public int getUpdates() {
+        return updates;
+    }
+
+    public abstract void initialize();
     public abstract void update();
-    public  abstract void render(Renderer renderer);
+    public abstract void render(Renderer renderer);
+
 
 }
